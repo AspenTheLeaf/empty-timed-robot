@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends TimedRobot {
 
   Joystick testJoystick;
+  Joystick secondJoystick;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -29,6 +30,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     testJoystick = new Joystick(0);
+    secondJoystick = new Joystick(1);
   }
 
   /**
@@ -43,10 +45,48 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    //Button A
     boolean aButton = testJoystick.getRawButton(1);
     SmartDashboard.putBoolean("Button Pressed", aButton);
-  }
+    boolean pressed = testJoystick.getRawButtonPressed(1);
+    SmartDashboard.putBoolean("Pressed", pressed);
+    boolean released = testJoystick.getRawButtonReleased(1);
+    SmartDashboard.putBoolean("Released", released);
 
+    //Button B
+    boolean bButton = testJoystick.getRawButton(2);
+    SmartDashboard.putBoolean("Button B Pressed", bButton);
+    boolean pressedB = testJoystick.getRawButtonPressed(2);
+    SmartDashboard.putBoolean("Pressed b", pressedB);
+    boolean releasedB = testJoystick.getRawButtonReleased(2);
+    SmartDashboard.putBoolean("Released b", releasedB);
+
+    //Button X
+    boolean xButton = testJoystick.getRawButton(3);
+    SmartDashboard.putBoolean("Button x Pressed", xButton);
+    boolean pressedx = testJoystick.getRawButtonPressed(3);
+    SmartDashboard.putBoolean("Pressed x", pressedx);
+    boolean releasedx = testJoystick.getRawButtonReleased(3);
+    SmartDashboard.putBoolean("Released x", releasedx);
+
+    //Button Y
+    boolean yButton = testJoystick.getRawButton(4);
+    SmartDashboard.putBoolean("Button y Pressed", yButton);
+    boolean pressedy = testJoystick.getRawButtonPressed(4);
+    SmartDashboard.putBoolean("Pressed y", pressedy);
+    boolean releasedy = testJoystick.getRawButtonReleased(4);
+    SmartDashboard.putBoolean("Released y", releasedy);
+
+    //Axis 1 (Left & Right)
+    double axis0 = testJoystick.getRawAxis(0);
+    //testJoystick.....
+    SmartDashboard.putNumber("Axis 0", axis0);
+
+    //POV Pad (D Pad)
+    int pov = testJoystick.getPOV();
+    SmartDashboard.putNumber("POV", pov);
+
+  }
   /** This function is called once when autonomous is enabled. */
   @Override
   public void autonomousInit() {}
