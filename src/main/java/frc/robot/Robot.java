@@ -6,6 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -77,14 +78,34 @@ public class Robot extends TimedRobot {
     boolean releasedy = testJoystick.getRawButtonReleased(4);
     SmartDashboard.putBoolean("Released y", releasedy);
 
-    //Axis 1 (Left & Right)
+    //Axis 0 (Left & Right)
     double axis0 = testJoystick.getRawAxis(0);
     //testJoystick.....
     SmartDashboard.putNumber("Axis 0", axis0);
 
+    //Axis 1 (Up & Down)
+    double axis1 = testJoystick.getRawAxis(1);
+    SmartDashboard.putNumber("Axis 1", axis1);
+
     //POV Pad (D Pad)
     int pov = testJoystick.getPOV();
     SmartDashboard.putNumber("POV", pov);
+
+    //Left Trigger
+    double trigger2 = testJoystick.getRawAxis(2);
+    SmartDashboard.putNumber("Left Trigger", trigger2);
+
+    //Right Trigger
+    double trigger1 = testJoystick.getRawAxis(3);
+    SmartDashboard.putNumber("Right Trigger", trigger1);
+
+    if(aButton == true)  {
+      testJoystick.setRumble(RumbleType.kLeftRumble, axis1 * -200);
+      testJoystick.setRumble(RumbleType.kRightRumble, axis1 * -200);
+    } else {
+      testJoystick.setRumble(RumbleType.kLeftRumble, 0.0);
+      testJoystick.setRumble(RumbleType.kRightRumble, 0.0);
+    }
 
   }
   /** This function is called once when autonomous is enabled. */
